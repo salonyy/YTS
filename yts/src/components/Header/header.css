@@ -1,18 +1,34 @@
-.navbar{
+
+ .navbar{
     
     padding: 1rem 3rem;
-    background-color: pink;
+    background-color: #711A75;
+    color: aliceblue;
+   
+}
+
+.nav{
+    color: aliceblue;
 }
 
 .nav-r{
     position: relative;
-    margin-left: 350px;
+    margin-left: 400px;
+    color: aliceblue;
 }
 
 .nav-link{
+    color: aliceblue;
     margin: 8px 15px;
 }
 
 .nav-btn{
     margin: 8px 10px;
+    background-color: black;
+}
+
+
+.link{
+    color: white;
+    text-decoration: none;
 }

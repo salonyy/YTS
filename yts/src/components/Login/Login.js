@@ -1,10 +1,13 @@
 import React from 'react'
-
+import './login.css'
 
 const Login=()=>{
     return (
-        <div>
-            <h1>Login</h1>
+        <div className='login'>
+           
+    
+    <h1>login</h1>
+    
         </div>
         
     )

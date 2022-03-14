@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+
+.about{
+    margin-top: 200px;
+    margin-bottom: 250px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    width: 50%;
+
+    background: #FFBDE6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    width: 50%;
+    user-select: auto;
+    padding: 23px;
+    
+        box-shadow: 5px 10px #F473B9;
+      
+}
+
+.head-ele{
+    font-family: 'Acme', sans-serif;
+    
+    text-align: center;
+}

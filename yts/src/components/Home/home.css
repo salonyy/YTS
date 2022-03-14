@@ -1,0 +1,39 @@
+.home{
+    margin-top: 150px;
+    margin-bottom: 250px;
+}
+
+.sum{
+    margin: 50px 0;
+    border: 3px solid #F10086;
+    padding: 0 50px;
+}
+.row{
+    padding: 0 50px;
+}
+
+.sec{
+    padding: 20px 0;
+}
+
+.translate {
+    margin: 20px 0;
+}
+
+.trans{
+    width: 70%;
+    margin: auto;
+}
+
+.save{
+    
+    
+    width: 50%;
+    margin: auto;
+    margin-bottom: 20px;
+
+}
+
+.s1{
+    text-align: left;
+}
