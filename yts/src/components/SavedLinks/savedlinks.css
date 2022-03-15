@@ -1,6 +1,16 @@
 .savedLinks{
     margin-top: 200px;
+    margin-bottom: 250px;
 }
-#border {
-    border: 7px solid rgb(9, 26, 179);
+
+.btns{
+    margin: 30px;
+}
+
+.linkitem{
+    width: 50%;
+    margin:auto;
+}
+.sl{
+    margin-bottom: 25px;
 }
