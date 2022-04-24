@@ -32,7 +32,7 @@ function App() {
         <div className="App">
 
             
-            <p>The current time is {currentTime}.</p>
+            {/* <p>The current time is {currentTime}.</p> */}
             {/* <Home/>
             
             <Login/>
@@ -41,12 +41,12 @@ function App() {
 
             {/*  */}
 
-           {/* <Router>
+            <Router>
                 <div>
                    
                     <Header/> 
 
-                
+                    
 
 
 
@@ -58,6 +58,7 @@ function App() {
                         <Route path="about" element={<About />} />
                     </Routes>
                     <Footer/>
+                    
                 </div>
             </Router>
             {/*  */}

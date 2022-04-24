@@ -1,51 +1,95 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import './home.css'
 import './yt.jpg'
+import APIService from '../APIService/APIService';
 import {InputGroup , Text, FormControl, Button, Container, Row, Col, ListGroup, Form} from "react-bootstrap";
 
+
 const Home=()=>{
+    const [title, setTitle] = useState('')
+    const [body, setBody] = useState("")
+    const [link, setLink] = useState('')
+    const  [summary, setSummary] = useState('')
+    const [keywords, setKeywords] = useState([])
+    const [lang, setLang] = useState('')
+    const [translatedText, setTranslatedText] = useState('')
+    const callAPI = () =>{
+      APIService.getSummary({title,body})
+      .then((response) => {console.log(response) 
+        setSummary(response.summary)
+        setKeywords(response.keywords)
+    })
+      .catch(error => console.log('error',error))
+    }
+
+    const callTranslateAPI = () =>{
+        APIService.getTranslation({title,summary,lang})
+        .then((response) => {console.log(response) 
+          setTranslatedText(response.translate)
+      })
+        .catch(error => console.log('error',error))
+      }
+    
+    useEffect(() => {
+        console.log(`count changed to ${body}`);
+        if(body !== '')
+            callAPI();
+            
+    }, [body]);
+    const handleSubmit=(event)=>{ 
+      console.log("qwerty " + link)
+      setBody(link)
+    }
+    const handleChange = (event)=>{
+        setLink(event.target.value)
+    }
+    const handleTranslate = (event)=>{
+        setLang(lang)
+        console.log(lang + "kfasdljfal")
+        console.log(summary)
+        callTranslateAPI();
+    }
     return (
         <div className='container home'>
            
             <InputGroup className="mb-3">
-                <InputGroup.Text id="inputGroup-sizing-link" >Paste Youtube Link</InputGroup.Text>
+                <InputGroup.Text  id="inputGroup-sizing-link" >Paste Youtube Link</InputGroup.Text>
                 <FormControl
                 aria-label="Link"
                 aria-describedby="inputGroup-sizing-link"
+                value = {link}
+                onChange = {handleChange}
                 />
             </InputGroup>
 
-            <Button variant="outline-primary">Get Summary</Button>{' '}
+            <Button variant="outline-primary" onClick={handleSubmit}>Get Summary</Button>{' '}
 
         {/* <div className='sum' id='summary'>
             <p className='sum'>Summary</p>
         </div> */}
-
+        
         <Container className="sum">
         <Row>
             <Col sm={8} className='sec'>
             <h4>Summary</h4>
-            <p>Sudha Murty also taught at Christ University. She has written and published many books, of which two are travelogues, two technical books, six novels, and three educative books.A writer, philanthropist and entrepreneur, Sudha Murthy is greatly revered for being a prolific writer, facilitating the education of poor children and for being one of the brains behind Infosys, one of India’s leading IT company.
-Sudha Murty became the first female engineer hired at India's largest auto manufacturer TATA Engineering and Locomotive Company (TELCO).
-She joined the company as a Development Engineer in Pune and then worked in Mumbai & Jamshedpur as well.</p>
-
+            <p>{summary}</p>
             </Col>
 
             <Col sm={4} className='sec'>
                <h4>Genre and Keywords</h4>
                <ListGroup>
-                
-                <ListGroup.Item>Biography</ListGroup.Item>
+                {keywords.map((word) => <ListGroup.Item>{word}</ListGroup.Item>)}
+                {/* <ListGroup.Item>Biography</ListGroup.Item>
                 <ListGroup.Item>engineer</ListGroup.Item>
                 <ListGroup.Item>company</ListGroup.Item>
                 <ListGroup.Item>writer</ListGroup.Item>
-                <ListGroup.Item>indian</ListGroup.Item>
+                <ListGroup.Item>indian</ListGroup.Item> */}
                 </ListGroup>
             </Col>
 
             <div className='translate'>
-            <Form.Select aria-label="Default select example trans" className='trans'>
-            <option>Choose a Language to translate summary</option>
+            <Form.Select onChange={(e) => setLang(e.target.value)} aria-label="Default select example trans" className='trans'>
+            <option value= " ">Choose a Language to translate summary</option>
   <option value="AF">Afrikaans</option>
   <option value="SQ">Albanian</option>
   <option value="AR">Arabic</option>
@@ -120,8 +164,12 @@ She joined the company as a Development Engineer in Pune and then worked in Mumb
   <option value="XH">Xhosa</option>
   </Form.Select>
             </div>
-
-            <Button variant="outline-success save">Save Link</Button>{' '}
+            
+            <Button variant="outline-primary" onClick={handleTranslate}>Get Translated Text</Button>{' '}
+            <div style={{paddingTop : 10}}>
+                <h4>Translated Text</h4>
+                <p>{translatedText}</p>
+            </div>
         </Row>
         </Container>
         </div>
